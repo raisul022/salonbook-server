@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 export const createApp = (): Application => {
   const app = express();
@@ -46,6 +47,7 @@ export const createApp = (): Application => {
   app.use('/api/services', serviceRoutes);
   app.use('/api/appointments', appointmentRoutes);
   app.use('/api/payments', paymentRoutes);
+  app.use('/api/users', userRoutes);
 
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
