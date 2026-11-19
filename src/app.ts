@@ -4,6 +4,7 @@ import { ENV } from './config/env.js';
 import authRoutes from './routes/authRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 export const createApp = (): Application => {
   const app = express();
@@ -26,7 +27,7 @@ export const createApp = (): Application => {
       },
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'stripe-signature'],
     })
   );
 
@@ -44,6 +45,7 @@ export const createApp = (): Application => {
   app.use('/api/auth', authRoutes);
   app.use('/api/services', serviceRoutes);
   app.use('/api/appointments', appointmentRoutes);
+  app.use('/api/payments', paymentRoutes);
 
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
