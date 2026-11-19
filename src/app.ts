@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { ENV } from './config/env.js';
+import authRoutes from './routes/authRoutes.js';
 
 export const createApp = (): Application => {
   const app = express();
@@ -15,12 +16,11 @@ export const createApp = (): Application => {
   app.use(
     cors({
       origin: (origin, callback) => {
-        // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
           return callback(null, true);
         }
-        return callback(null, true); // Permissive in dev/testing to prevent CORS issues
+        return callback(null, true);
       },
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -28,8 +28,6 @@ export const createApp = (): Application => {
     })
   );
 
-  // Note: Stripe webhook route requires raw body for signature verification
-  // We'll mount it with express.raw before express.json or handle conditionally
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (req.originalUrl === '/api/payments/webhook') {
       express.raw({ type: 'application/json' })(req, res, next);
@@ -39,6 +37,9 @@ export const createApp = (): Application => {
   });
 
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+  // Routes
+  app.use('/api/auth', authRoutes);
 
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
@@ -52,3 +53,4 @@ export const createApp = (): Application => {
 
   return app;
 };
+
