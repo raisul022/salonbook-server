@@ -63,7 +63,7 @@ export const getServices = async (req: Request, res: Response): Promise<void> =>
 // Public: Get Single Service by ID (For Service Details page)
 export const getServiceById = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({
@@ -176,7 +176,7 @@ export const createService = async (req: AuthenticatedRequest, res: Response): P
 // Admin: Update service
 export const updateService = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({
@@ -239,7 +239,7 @@ export const updateService = async (req: AuthenticatedRequest, res: Response): P
 // Admin: Delete service
 export const deleteService = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({
@@ -273,7 +273,7 @@ export const deleteService = async (req: AuthenticatedRequest, res: Response): P
 // Admin: Activate or Deactivate Service
 export const toggleServiceStatus = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({

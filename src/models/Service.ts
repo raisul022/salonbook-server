@@ -67,8 +67,8 @@ const serviceSchema = new Schema<IService>(
   {
     timestamps: true,
     toJSON: {
-      transform(_doc, ret) {
-        ret.id = ret._id.toString();
+      transform(_doc, ret: Record<string, any>) {
+        ret.id = ret._id ? ret._id.toString() : '';
         delete ret._id;
         delete ret.__v;
         return ret;

@@ -33,7 +33,7 @@ export const getUserDetailsAdmin = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({ success: false, message: 'Invalid user ID format.' });
@@ -73,7 +73,7 @@ export const toggleBlockUserAdmin = async (
 ): Promise<void> => {
   try {
     const currentAdmin = req.user;
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({ success: false, message: 'Invalid user ID format.' });

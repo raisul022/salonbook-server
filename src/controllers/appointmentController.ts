@@ -141,7 +141,7 @@ export const cancelAppointmentCustomer = async (
 ): Promise<void> => {
   try {
     const user = req.user;
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!user) {
       res.status(401).json({ success: false, message: 'Authentication required.' });
@@ -234,7 +234,7 @@ export const confirmAppointmentAdmin = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({ success: false, message: 'Invalid appointment ID.' });
@@ -282,7 +282,7 @@ export const cancelAppointmentAdmin = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       res.status(400).json({ success: false, message: 'Invalid appointment ID.' });
@@ -326,7 +326,7 @@ export const getAppointmentDetails = async (
 ): Promise<void> => {
   try {
     const user = req.user;
-    const { id } = req.params;
+    const id = req.params.id as string;
 
     if (!user) {
       res.status(401).json({ success: false, message: 'Authentication required.' });
