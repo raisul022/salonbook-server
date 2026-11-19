@@ -193,13 +193,24 @@ export const cancelAppointmentCustomer = async (
   }
 };
 
-// Admin: View all appointments
+// Admin: View all appointments with filtering by status
 export const getAllAppointmentsAdmin = async (
-  _req: AuthenticatedRequest,
+  req: AuthenticatedRequest,
   res: Response
 ): Promise<void> => {
   try {
-    const appointments = await Appointment.find()
+    const { status, date } = req.query;
+    const filter: any = {};
+
+    if (status && ['pending', 'confirmed', 'cancelled'].includes(status as string)) {
+      filter.status = status;
+    }
+
+    if (date && typeof date === 'string') {
+      filter.appointmentDate = date;
+    }
+
+    const appointments = await Appointment.find(filter)
       .populate('serviceId', 'serviceName category image duration price status')
       .populate('customerId', 'name email image phone isBlocked')
       .sort({ createdAt: -1 });
