@@ -2,6 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { ENV } from './config/env.js';
 import authRoutes from './routes/authRoutes.js';
+import serviceRoutes from './routes/serviceRoutes.js';
 
 export const createApp = (): Application => {
   const app = express();
@@ -40,6 +41,7 @@ export const createApp = (): Application => {
 
   // Routes
   app.use('/api/auth', authRoutes);
+  app.use('/api/services', serviceRoutes);
 
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
