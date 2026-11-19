@@ -51,6 +51,27 @@ export const createApp = (): Application => {
   app.use('/api/users', userRoutes);
   app.use('/api/stats', statsRoutes);
 
+  // Root & API welcome endpoints
+  app.get('/', (_req: Request, res: Response) => {
+    res.status(200).json({
+      status: 'success',
+      message: 'Welcome to SalonBook API Server',
+      documentation: 'https://github.com/raisul022/salonbook-server',
+      healthCheck: '/api/health',
+      services: '/api/services',
+    });
+  });
+
+  app.get('/api', (_req: Request, res: Response) => {
+    res.status(200).json({
+      status: 'success',
+      message: 'SalonBook REST API Gateway',
+      version: '1.0.0',
+      healthCheck: '/api/health',
+      services: '/api/services',
+    });
+  });
+
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
     res.status(200).json({
