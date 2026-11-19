@@ -3,6 +3,7 @@ import cors from 'cors';
 import { ENV } from './config/env.js';
 import authRoutes from './routes/authRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
+import appointmentRoutes from './routes/appointmentRoutes.js';
 
 export const createApp = (): Application => {
   const app = express();
@@ -42,6 +43,7 @@ export const createApp = (): Application => {
   // Routes
   app.use('/api/auth', authRoutes);
   app.use('/api/services', serviceRoutes);
+  app.use('/api/appointments', appointmentRoutes);
 
   // Health check endpoint
   app.get('/api/health', (_req: Request, res: Response) => {
