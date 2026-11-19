@@ -152,7 +152,7 @@ ADMIN_PASSWORD="AdminPassword123!"
 - **Client Side Repository:** [https://github.com/raisul022/salonbook-client](https://github.com/raisul022/salonbook-client)
 - **Server Side Repository:** [https://github.com/raisul022/salonbook-server](https://github.com/raisul022/salonbook-server)
 - **Live Server API:** [https://salonbook-server-m31w.onrender.com/api](https://salonbook-server-m31w.onrender.com/api)
-- **Live Website:** [https://salonbook-client.vercel.app](https://salonbook-client.vercel.app)
+- **Live Website:** [https://salonbook-client-five.vercel.app](https://salonbook-client-five.vercel.app)
 
 ---
 
