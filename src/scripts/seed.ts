@@ -79,7 +79,7 @@ const sampleServices = [
     description: 'Intense therapeutic massage focused on releasing upper back tension, stiff neck, and shoulder knots using warm organic eucalyptus oils.',
     price: 85,
     duration: 60,
-    image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1650044252595-cacd425982ff?auto=format&fit=crop&w=800&q=80',
     status: 'active',
     rating: 5.0,
     reviewsCount: 63,
